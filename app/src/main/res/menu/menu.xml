@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Name asc"
+        android:id="@+id/sortAreaAsc"/>
+    <item
+        android:title="Name desc"
+        android:id="@+id/sortAreaDesc"/>
+    <item
+        android:title="Area asc"
+        android:id="@+id/sortNameAsc"/>
+    <item
+        android:title="Area desc"
+        android:id="@+id/sortNameDesc"/>
+
+</menu>

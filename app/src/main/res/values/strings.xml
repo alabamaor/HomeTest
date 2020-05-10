@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Countries</string>
+    <string name="msg_loading_error">Error fetching data. Please try to reload or check your internet connection.</string>
+    <string name="msg_no_data">No Data found.</string>
+
+    <string name="sortNameAsc">Sort Name Asc</string>
+    <string name="sortNameDesc">Sort Name Desc</string>
+    <string name="sortAreaAsc">Sort Area Asc</string>
+    <string name="sortAreaDesc">Sort Area Desc</string>
+
+    <array name="sort_by">
+        <item>By name</item>
+        <item>By area</item>
+    </array>
+
+    <array name="sort_order">
+        <item>Ascending</item>
+        <item>Descending</item>
+    </array>
+
+</resources>
