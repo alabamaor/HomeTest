@@ -10,8 +10,8 @@
         android:label="main_fragment"
         tools:layout="@layout/main_fragment" >
         <action
-            android:id="@+id/action_mainFragment_to_selectFragment"
-            app:destination="@id/selectFragment" />
+            android:id="@+id/action_to_selectFragment"
+            app:destination="@+id/selectFragment" />
     </fragment>
     <fragment
         android:id="@+id/selectFragment"
@@ -19,7 +19,7 @@
         android:label="fragment_select"
         tools:layout="@layout/fragment_select" >
         <action
-            android:id="@+id/action_selectFragment_to_mainFragment"
+            android:id="@+id/action_back"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

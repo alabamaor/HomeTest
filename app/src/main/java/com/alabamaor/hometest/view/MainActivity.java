@@ -17,31 +17,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private NavController navController;
-
-    private Fragment fragment;
-
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = item -> {
-        switch (item.getItemId()) {
-            case R.id.sortAreaAsc:
-                Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.sortAreaDesc:
-                Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.sortNameAsc:
-                Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.sortNameDesc:
-                Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_LONG).show();
-                return true;
-        }
-        return false;
-    };
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,19 +24,13 @@ public class MainActivity extends AppCompatActivity {
 
 //
     }
-
-
     @Override
     public boolean onSupportNavigateUp() {
-        return NavigationUI.navigateUp(navController, (DrawerLayout) null);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        getSupportFragmentManager().popBackStack();
         return true;
     }
+
+
 }
 
 

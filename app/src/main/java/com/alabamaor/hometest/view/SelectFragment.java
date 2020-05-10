@@ -5,13 +5,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -25,6 +29,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SelectFragment extends Fragment {
+
+    @BindView(R.id.selectedBtnBack)
+    AppCompatButton btnBack;
 
     @BindView(R.id.selectedCountriesList)
     RecyclerView countryList;
@@ -83,6 +90,12 @@ public class SelectFragment extends Fragment {
         sharedViewModel = new ViewModelProvider(activity).get(SharedViewModel.class);
         selectedViewModel = new ViewModelProvider(activity).get(SelectedViewModel.class);
 
+        btnBack.setOnClickListener(v -> {
+            NavDirections action =
+                    SelectFragmentDirections.actionBack();
+            Navigation.findNavController(v).navigate(action);
+
+        });
         name.setText(sharedViewModel.countryModelSelected.getValue().getName());
         nativeName.setText(sharedViewModel.countryModelSelected.getValue().getNativeName());
 //        selectedViewModel.initWithSelected(sharedViewModel.countryModelSelected.getValue().getBorders());
@@ -108,6 +121,8 @@ public class SelectFragment extends Fragment {
                 countryListAdapter.update(countryModels);
                 tvError.setVisibility(View.INVISIBLE);
                 loading.setVisibility(View.INVISIBLE);
+                btnBack.setVisibility(View.VISIBLE);
+
 
             }
         });
@@ -116,6 +131,7 @@ public class SelectFragment extends Fragment {
             if (isLoading != null) {
                 if (isLoading) {
                     countryList.setVisibility(View.INVISIBLE);
+                    btnBack.setVisibility(View.INVISIBLE);
                     tvError.setVisibility(View.INVISIBLE);
                     loading.setVisibility(View.VISIBLE);
                 }
@@ -138,6 +154,8 @@ public class SelectFragment extends Fragment {
                         countryList.setVisibility(View.VISIBLE);
                         tvError.setVisibility(View.INVISIBLE);
                         loading.setVisibility(View.INVISIBLE);
+                        btnBack.setVisibility(View.VISIBLE);
+
                         break;
                 }
             }
@@ -156,6 +174,8 @@ public class SelectFragment extends Fragment {
         tvError.setVisibility(View.VISIBLE);
         loading.setVisibility(View.INVISIBLE);
         tvError.setText(str);
+        btnBack.setVisibility(View.VISIBLE);
+
     }
 
 

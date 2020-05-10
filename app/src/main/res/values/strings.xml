@@ -9,6 +9,7 @@
     <string name="sortNameDesc">Sort Name Desc</string>
     <string name="sortAreaAsc">Sort Area Asc</string>
     <string name="sortAreaDesc">Sort Area Desc</string>
+    <string name="back">BACK</string>
 
     <array name="sort_by">
         <item>By name</item>

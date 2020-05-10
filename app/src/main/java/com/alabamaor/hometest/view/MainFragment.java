@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -185,10 +187,6 @@ public class MainFragment extends Fragment implements CountryListAdapter.Country
             }
         });
 
-        sharedViewModel.countryModelSelected.observe(getViewLifecycleOwner(), countryModel -> {
-           // activity.addFragment(activity.selectFragment);
-
-        });
 
     }
 
@@ -203,7 +201,10 @@ public class MainFragment extends Fragment implements CountryListAdapter.Country
     @Override
     public void onCountryListItemSelected(View v, CountryModel selected) {
         sharedViewModel.countryModelSelected.setValue(selected);
-        Log.d("alabama", selected.getName());
+        NavDirections action =
+                MainFragmentDirections.actionToSelectFragment();
+        Navigation.findNavController(v).navigate(action);
+
 }
 
 }
