@@ -171,9 +171,9 @@ public class SelectFragment extends Fragment {
 
     private void errorDisplay(String str){
         countryList.setVisibility(View.INVISIBLE);
-        tvError.setVisibility(View.VISIBLE);
         loading.setVisibility(View.INVISIBLE);
         tvError.setText(str);
+        tvError.setVisibility(View.VISIBLE);
         btnBack.setVisibility(View.VISIBLE);
 
     }
