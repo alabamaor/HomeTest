@@ -65,16 +65,11 @@ public class MainFragment extends Fragment implements CountryListAdapter.Country
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Log.i("alabama-->", "onViewCreated");
-
-
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        Log.i("alabama-->", "onActivityCreated");
 
         activity = (MainActivity) getActivity();
 
