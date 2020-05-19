@@ -79,23 +79,22 @@ public class MainFragment extends Fragment implements CountryListAdapter.Country
         activity = (MainActivity) getActivity();
 
 
-        ButterKnife.bind(this,activity);
+        ButterKnife.bind(this, activity);
 
         sharedViewModel = new ViewModelProvider(activity).get(SharedViewModel.class);
         mainViewModel = new ViewModelProvider(activity).get(MainViewModel.class);
-
 
 
         countryList.setAdapter(countryListAdapter);
         countryListAdapter.setCountryListItemListener(this::onCountryListItemSelected);
 
         refreshLayout.setOnRefreshListener(() -> {
-           restart();
+            restart();
             refreshLayout.setRefreshing(false);
         });
 
 
-        if ( mainViewModel.sortBy.getValue() == null || mainViewModel.sortByAsc.getValue() == null){
+        if (mainViewModel.sortBy.getValue() == null || mainViewModel.sortByAsc.getValue() == null) {
             mainViewModel.init();
         }
 
@@ -104,14 +103,10 @@ public class MainFragment extends Fragment implements CountryListAdapter.Country
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 mainViewModel.sortBy.setValue(Sort.ByField.values()[position]);
-
-                countryListAdapter.sort(mainViewModel.sortBy.getValue(), mainViewModel.sortByAsc.getValue());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                countryListAdapter.sort(mainViewModel.sortBy.getValue(), mainViewModel.sortByAsc.getValue());
-
             }
         });
 
@@ -133,7 +128,7 @@ public class MainFragment extends Fragment implements CountryListAdapter.Country
         observeViewModel();
     }
 
-    private void restart(){
+    private void restart() {
 
         mainViewModel.init();
         sortBy.setSelection(0);
@@ -205,6 +200,6 @@ public class MainFragment extends Fragment implements CountryListAdapter.Country
                 MainFragmentDirections.actionToSelectFragment();
         Navigation.findNavController(v).navigate(action);
 
-}
+    }
 
 }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -62,12 +61,6 @@ public class SelectFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static SelectFragment newInstance() {
-        SelectFragment fragment = new SelectFragment();
-        return fragment;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,7 +78,7 @@ public class SelectFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        activity = (MainActivity)getActivity();
+        activity = (MainActivity) getActivity();
 
         sharedViewModel = new ViewModelProvider(activity).get(SharedViewModel.class);
         selectedViewModel = new ViewModelProvider(activity).get(SelectedViewModel.class);
@@ -93,12 +86,11 @@ public class SelectFragment extends Fragment {
         btnBack.setOnClickListener(v -> {
             NavDirections action =
                     SelectFragmentDirections.actionBack();
-            Navigation.findNavController(v).navigate(action);
+            Navigation.findNavController(v).popBackStack();
 
         });
         name.setText(sharedViewModel.countryModelSelected.getValue().getName());
         nativeName.setText(sharedViewModel.countryModelSelected.getValue().getNativeName());
-//        selectedViewModel.initWithSelected(sharedViewModel.countryModelSelected.getValue().getBorders());
 
         countryList.setAdapter(countryListAdapter);
 
@@ -106,7 +98,6 @@ public class SelectFragment extends Fragment {
             selectedViewModel.initWithSelected(sharedViewModel.countryModelSelected.getValue().getBorders());
             refreshLayout.setRefreshing(false);
         });
-
 
         observeViewModel();
     }
@@ -145,7 +136,7 @@ public class SelectFragment extends Fragment {
                 switch (error) {
 
                     case NO_CONNECTION:
-                    errorDisplay(getResources().getString(R.string.msg_loading_error));
+                        errorDisplay(getResources().getString(R.string.msg_loading_error));
                         break;
                     case NO_DATA:
                         errorDisplay(getResources().getString(R.string.msg_no_data));
@@ -164,12 +155,11 @@ public class SelectFragment extends Fragment {
 
         sharedViewModel.countryModelSelected.observe(getViewLifecycleOwner(), countryModel -> {
             selectedViewModel.initWithSelected(countryModel.getBorders());
-
         });
 
     }
 
-    private void errorDisplay(String str){
+    private void errorDisplay(String str) {
         countryList.setVisibility(View.INVISIBLE);
         loading.setVisibility(View.INVISIBLE);
         tvError.setText(str);
